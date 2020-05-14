@@ -1,4 +1,4 @@
-extends VehicleWheel
+extends VehicleWheel3D
 
 tool
 

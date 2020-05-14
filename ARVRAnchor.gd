@@ -1,4 +1,4 @@
-extends ARVRAnchor
+extends XRAnchor3D
 
 tool
 

@@ -1,4 +1,4 @@
-extends ARVRController
+extends XRController3D
 
 tool
 

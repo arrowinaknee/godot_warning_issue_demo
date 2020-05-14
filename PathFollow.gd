@@ -1,4 +1,4 @@
-extends PathFollow
+extends PathFollow3D
 
 tool
 

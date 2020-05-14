@@ -1,4 +1,4 @@
-extends ARVROrigin
+extends XROrigin3D
 
 tool
 

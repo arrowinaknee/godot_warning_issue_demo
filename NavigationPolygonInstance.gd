@@ -1,4 +1,4 @@
-extends NavigationPolygonInstance
+extends NavigationRegion2D
 
 tool
 

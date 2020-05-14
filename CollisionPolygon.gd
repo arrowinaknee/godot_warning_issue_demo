@@ -1,4 +1,4 @@
-extends CollisionPolygon
+extends CollisionPolygon3D
 
 tool
 

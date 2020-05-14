@@ -1,6 +1,6 @@
-extends CPUParticles3D
+extends SubViewport
 
 tool
 
 func _get_configuration_warning():
-	return "Message"
+	return "message"

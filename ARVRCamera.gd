@@ -1,4 +1,4 @@
-extends ARVRCamera
+extends XRCamera3D
 
 tool
 

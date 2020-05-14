@@ -1,4 +1,4 @@
-extends NavigationMeshInstance
+extends NavigationRegion3D
 
 tool
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Bone2D.gd" type="Script" id=1]
 [ext_resource path="res://AnimatedSprite.gd" type="Script" id=2]
@@ -29,13 +29,21 @@
 [ext_resource path="res://w.gd" type="Script" id=27]
 [ext_resource path="res://Popup.gd" type="Script" id=28]
 [ext_resource path="res://ScrollContainer.gd" type="Script" id=29]
-[ext_resource path="res://Viewport.gd" type="Script" id=30]
+[ext_resource path="res://NavigationAgent2D.gd" type="Script" id=31]
+[ext_resource path="res://NavigationObstacle2D.gd" type="Script" id=32]
+[ext_resource path="res://CollisionShape3D.gd" type="Script" id=33]
+[ext_resource path="res://NavigationAgent3D.gd" type="Script" id=34]
+[ext_resource path="res://NavigationObstacle3D.gd" type="Script" id=35]
+[ext_resource path="res://Sprite3D.gd" type="Script" id=36]
+[ext_resource path="res://ShaderGlobalsOverride.gd" type="Script" id=37]
+[ext_resource path="res://SubViewport.gd" type="Script" id=38]
 
 [sub_resource type="NavigationMesh" id=1]
 
 [node name="Node" type="Node"]
+script = null
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 script = ExtResource( 2 )
 
 [node name="Bone2D" type="Bone2D" parent="."]
@@ -59,13 +67,19 @@ script = ExtResource( 6 )
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 script = ExtResource( 7 )
 
-[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+[node name="NavigationPolygonInstance" type="NavigationRegion2D" parent="."]
 script = ExtResource( 8 )
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="NavigationPolygonInstance"]
+script = ExtResource( 31 )
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationPolygonInstance"]
+script = ExtResource( 32 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 script = ExtResource( 9 )
 
-[node name="Particles2D" type="Particles2D" parent="."]
+[node name="Particles2D" type="GPUParticles2D" parent="."]
 script = ExtResource( 10 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
@@ -77,56 +91,59 @@ script = ExtResource( 12 )
 [node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
 script = ExtResource( 13 )
 
-[node name="ARVRCamera" type="ARVRCamera" parent="."]
+[node name="ARVRCamera" type="XRCamera3D" parent="."]
 script = ExtResource( 14 )
 
-[node name="ARVRController" type="ARVRController" parent="."]
+[node name="ARVRController" type="XRController3D" parent="."]
 script = ExtResource( 15 )
 
-[node name="ARVRAnchor" type="ARVRAnchor" parent="."]
+[node name="ARVRAnchor" type="XRAnchor3D" parent="."]
 script = ExtResource( 16 )
 
-[node name="ARVROrigin" type="ARVROrigin" parent="."]
+[node name="ARVROrigin" type="XROrigin3D" parent="."]
 script = ExtResource( 17 )
 
-[node name="CollisionPolygon" type="CollisionPolygon" parent="."]
+[node name="CollisionPolygon" type="CollisionPolygon3D" parent="."]
 script = ExtResource( 18 )
 
-[node name="CPUParticles" type="CPUParticles" parent="."]
+[node name="CPUParticles" type="CPUParticles3D" parent="."]
 script = ExtResource( 19 )
 
 [node name="GIProbe" type="GIProbe" parent="."]
 script = ExtResource( 20 )
 
-[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="."]
+[node name="NavigationMeshInstance" type="NavigationRegion3D" parent="."]
 navmesh = SubResource( 1 )
 script = ExtResource( 21 )
 
-[node name="NavigationMeshInstance2" type="NavigationMeshInstance" parent="."]
-script = ExtResource( 21 )
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="NavigationMeshInstance"]
+script = ExtResource( 34 )
 
-[node name="Particles" type="Particles" parent="."]
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationMeshInstance"]
+script = ExtResource( 35 )
+
+[node name="Particles" type="GPUParticles3D" parent="."]
 script = ExtResource( 22 )
 
-[node name="PathFollow" type="PathFollow" parent="."]
+[node name="PathFollow" type="PathFollow3D" parent="."]
 script = ExtResource( 23 )
 
-[node name="RemoteTransform" type="RemoteTransform" parent="."]
+[node name="RemoteTransform" type="RemoteTransform3D" parent="."]
 script = ExtResource( 24 )
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 script = ExtResource( 25 )
 
-[node name="VehicleWheel" type="VehicleWheel" parent="."]
+[node name="Sprite3D" type="Sprite3D" parent="AnimatedSprite3D"]
+script = ExtResource( 36 )
+
+[node name="VehicleWheel" type="VehicleWheel3D" parent="."]
 script = ExtResource( 26 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 script = ExtResource( 27 )
 
 [node name="Popup" type="Popup" parent="."]
-visible = true
-margin_right = 40.0
-margin_bottom = 40.0
 script = ExtResource( 28 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
@@ -137,5 +154,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Viewport" type="Viewport" parent="."]
-script = ExtResource( 30 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+script = ExtResource( 33 )
+
+[node name="ShaderGlobalsOverride" type="ShaderGlobalsOverride" parent="."]
+script = ExtResource( 37 )
+
+[node name="SubViewport" type="SubViewport" parent="."]
+script = ExtResource( 38 )
